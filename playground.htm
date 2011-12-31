@@ -1,0 +1,32 @@
+!!! Spi RAM together with Ethernet Shield
+
+This library makes it possible to use the 23K256 ([[http://ww1.microchip.com/downloads/en/DeviceDoc/22100D.pdf | Datasheet - PDF]]), 
+a 32K SRAM chip from Microchip. The library is an adaptation from the SRAM lib written by Carl Morey.
+
+!! Hardware
+
+Connect the SRAM chip to the arduino pins as follows:
+
+||Function|| 23K256 || Arduino ||
+||1||/CS|| 9 ||     
+||2||SO|| 12 || 
+||3||NC||    ||
+||4||GND|| GND ||
+||5||SI|| 11 ||
+||6||SCK|| 13 ||
+||7||/HOLD|| 5V ||
+||8||5V||
+
+! Ethernetshield
+
+When you use an older version of the Ethernetshield (without the SD connector) connect pin 2 of the prog connector to
+pin 9 of the Arduino. This takes care of disabling the SPI interface of the Ethernetshield during SRAM access.
+
+  
+!! Software
+
+The SRAM9 library is an adaptation of the SRAM lib. The main changes are the that pin 9 is used to select the SRAM chip instead of
+the pin 10. Furthermore a few digital I/O statements have been changed.
+You can download the libray here: 
+
+  
