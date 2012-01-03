@@ -24,6 +24,13 @@ digital pin 9     SS
 #ifndef SRAM_h
 #define SRAM_h
 
+#if (ARDUINO >= 100)
+#include <Arduino.h>
+#else
+#include <WProgram.h>
+#endif
+
+
 #define setupSPI SPCR = 0x50      //Master mode, MSB first, SCK phase low, SCK idle low, clock/4
 #define setupDDRB DDRB |= 0x2c    //set  SCK(13) MOSI(11) and SS as output 
 #define selectSS PORTB &= ~0x02   //set the SS to 0 to select MSH:use pin 9 for sram instead of 10

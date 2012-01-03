@@ -21,17 +21,12 @@ digital pin 11    MOSI
 digital pin  9    SS
 */
 
-#if (ARDUINO >= 100)
-#include <Arduino.h>
-#else
-#include "WProgram.h"
-#endif
 #include "SRAM9.h"
 
 SRAMclass::SRAMclass()  //constructor
 {
 	setupDDRB;
-//	setupSPI;
+	setupSPI;
 	pinMode(SS9, OUTPUT);
 	selectSS;
 	RWdata(0x05);//read status register
@@ -50,8 +45,8 @@ SRAMclass::SRAMclass()  //constructor
 void SRAMclass::writestream(int address)
 {
 	deselectSS;  //deselect if still selected
-	selectSS; //select now
 	digitalWrite(10,HIGH);
+	selectSS; //select now
 	RWdata(0x02);//write to address
 	RWdata(address >> 8);//msb address
 	RWdata(address);//lsb address 
